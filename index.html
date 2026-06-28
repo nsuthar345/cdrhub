@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Vector & CNC Hub</title>
+    <title>CDRHUB - Premium Vector & CNC Designs</title>
     <style>
         * {
             margin: 0;
@@ -15,6 +15,7 @@
         body {
             background-color: #f4f7f6;
             color: #333;
+            overflow-x: hidden;
         }
 
         /* Top Navigation Strip */
@@ -37,9 +38,10 @@
 
         .logo {
             color: #fff;
-            font-size: 22px;
-            font-weight: bold;
-            letter-spacing: 1px;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
 
         .logo span {
@@ -69,7 +71,7 @@
             background-color: #252525;
         }
 
-        /* Dropdown Menu (Desktop) */
+        /* Dropdown Menu */
         .dropdown {
             position: absolute;
             top: 100%;
@@ -95,30 +97,62 @@
             display: block;
         }
 
-        /* Main Content Container */
+        /* Main Showcase Container */
         .main-container {
             max-width: 1200px;
-            margin: 40px auto;
+            margin: 30px auto;
             padding: 0 20px;
         }
 
+        /* Section Headings */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            margin-bottom: 15px;
+        }
+
         .section-title {
-            font-size: 28px;
-            margin-bottom: 30px;
+            font-size: 24px;
             color: #222;
             border-left: 5px solid #00adb5;
-            padding-left: 15px;
+            padding-left: 12px;
+            text-transform: uppercase;
+            font-weight: 700;
         }
 
-        /* Base Grid: Desktop par 4 cards */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 25px;
-            margin-bottom: 50px;
+        /* HORIZONTAL SCROLL GRID (The Magic Part) */
+        .scroll-wrapper {
+            position: relative;
+            margin-bottom: 20px;
         }
 
+        .card-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 10px 5px 25px 5px;
+            scroll-behavior: smooth;
+            scrollbar-width: thin; /* Firefox ke liye chhota scrollbar */
+        }
+
+        /* Webkit browsers (Chrome, Safari) ke scrollbar ko clean karne ke liye */
+        .card-slider::-webkit-scrollbar {
+            height: 6px;
+        }
+        .card-slider::-webkit-scrollbar-track {
+            background: #e4e4e4;
+            border-radius: 10px;
+        }
+        .card-slider::-webkit-scrollbar-thumb {
+            background: #00adb5;
+            border-radius: 10px;
+        }
+
+        /* Fixed Card Width for Horizontal Scroll */
         .card {
+            flex: 0 0 280px; /* Card ki width desktop/mobile dono par fix rahegi */
             background: #fff;
             border-radius: 8px;
             overflow: hidden;
@@ -130,7 +164,7 @@
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
         }
 
         .card-image {
@@ -146,29 +180,18 @@
         }
 
         .card-content {
-            padding: 20px;
+            padding: 15px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
-        .card-tag {
-            align-self: flex-start;
-            background: #e1f5fe;
-            color: #0288d1;
-            font-size: 12px;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
         .card-title {
-            font-size: 18px;
-            margin-bottom: 10px;
+            font-size: 16px;
+            margin-bottom: 12px;
             color: #222;
+            font-weight: 600;
         }
 
         .card-btn {
@@ -177,10 +200,10 @@
             background-color: #00adb5;
             color: #fff;
             text-decoration: none;
-            padding: 10px;
+            padding: 8px;
             border-radius: 5px;
+            font-size: 14px;
             font-weight: 500;
-            margin-top: 15px;
             transition: background 0.3s;
         }
 
@@ -188,24 +211,55 @@
             background-color: #008c92;
         }
 
-        /* Pagination Style */
+        /* Arrow / View All End Card */
+        .arrow-card {
+            flex: 0 0 180px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+            transition: background 0.3s, transform 0.3s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .arrow-card:hover {
+            background: #00adb5;
+            transform: scale(1.03);
+        }
+
+        .arrow-icon {
+            font-size: 40px;
+            margin-bottom: 8px;
+        }
+
+        .arrow-text {
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Pagination Section (Agar aapko pure page badalne ke liye chahiye) */
         .pagination {
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 8px;
-            margin: 40px 0;
-            flex-wrap: wrap; /* Mobile par buttons niche wrap ho sakein */
+            margin: 50px 0;
+            flex-wrap: wrap;
         }
 
         .pagination a {
             color: #333;
-            padding: 10px 16px;
+            padding: 8px 14px;
             text-decoration: none;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-weight: 500;
-            transition: all 0.3s ease;
+            font-size: 14px;
         }
 
         .pagination a.active {
@@ -214,58 +268,29 @@
             border: 1px solid #00adb5;
         }
 
-        .pagination a:hover:not(.active) {
-            background-color: #ddd;
-        }
-
-        /* ===================================================
-           MOBILE & TABLET RESPONSIVE STYLES (Media Queries)
-        =================================================== */
-        
-        /* 1. Tablets (Screens less than 1024px) */
-        @media (max-width: 1024px) {
-            .card-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 Cards per row */
-                gap: 20px;
-            }
-        }
-
-        /* 2. Mobile Phones (Screens less than 768px) */
+        /* Mobile Layout Adjustments */
         @media (max-width: 768px) {
             .nav-container {
-                flex-direction: column; /* Logo upar, menu niche */
-                gap: 12px;
-                padding: 10px;
+                flex-direction: column;
+                gap: 10px;
+                padding: 12px 10px;
             }
 
             .nav-links a {
-                padding: 8px 10px;
-                font-size: 14px; /* Thoda chhota font mobile ke liye */
-            }
-
-            /* Mobile par hover dropdown ki jagah automatic toggle/simple responsive menu setup standard hota hai, abhi ke liye ye touch par clickable rahega */
-            .nav-links li:hover .dropdown {
-                display: block;
-                position: absolute;
-            }
-
-            .card-grid {
-                grid-template-columns: repeat(1, 1fr); /* Ek line me sirf 1 card full width */
-                gap: 15px;
-            }
-
-            .main-container {
-                margin: 20px auto;
+                padding: 6px 10px;
+                font-size: 14px;
             }
 
             .section-title {
-                font-size: 22px;
-                margin-bottom: 20px;
+                font-size: 18px;
             }
 
-            .pagination a {
-                padding: 8px 12px; /* Touch target accurate karne ke liye optimized button size */
-                font-size: 14px;
+            .card {
+                flex: 0 0 240px; /* Mobile par card thoda compact ho jayega smooth scroll ke liye */
+            }
+
+            .arrow-card {
+                flex: 0 0 150px;
             }
         }
     </style>
@@ -275,15 +300,14 @@
     <!-- Navigation Strip -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">DESIGN<span>HUB</span></div>
+            <div class="logo">CDR<span>HUB</span></div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About Us</a></li>
                 <li>
                     <a href="#categories">Category ▾</a>
-                    <!-- Dropdown Items -->
                     <ul class="dropdown">
-                        <li><a href="#cnc">CNC Vector Files</a></li>
+                        <li><a href="#cnc">CNC Jali Design</a></li>
                         <li><a href="#visiting-cards">Visiting Cards</a></li>
                         <li><a href="#brochures">Brochures</a></li>
                         <li><a href="#invitations">Invitation Cards</a></li>
@@ -294,96 +318,90 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
+    <!-- Main Container -->
     <div class="main-container">
-        <h2 class="section-title">Latest Premium Designs (Page 1)</h2>
-        
-        <!-- Responsive Grid -->
-        <div class="card-grid">
-            
-            <!-- Card 1: CNC File -->
-            <div class="card">
-                <div class="card-image" style="background-color: #e0e0e0;">CNC Design 1</div>
-                <div class="card-content">
-                    <span class="card-tag">CNC Vector</span>
-                    <h3 class="card-title">Jali Cutting Pattern</h3>
-                    <a href="#" class="card-btn">Download DXF</a>
-                </div>
-            </div>
 
-            <!-- Card 2: Visiting Card -->
-            <div class="card">
-                <div class="card-image" style="background-color: #d1c4e9;">Card Design</div>
-                <div class="card-content">
-                    <span class="card-tag">Visiting Card</span>
-                    <h3 class="card-title">Luxury Business Card</h3>
-                    <a href="#" class="card-btn">Download CDR</a>
-                </div>
+        <!-- ================= SECTION 1: CNC JALI DESIGN ================= -->
+        <div class="section-header">
+            <h2 class="section-title">CNC Jaali Design</h2>
+        </div>
+        <div class="scroll-wrapper">
+            <div class="card-slider">
+                <!-- 10 Dummy Cards for CNC -->
+                <div class="card"><div class="card-image" style="background-color: #ffebee;">Jali 1</div><div class="card-content"><h3 class="card-title">Modern Jali Pattern 1</h3><a href="#" class="card-btn">Download DXF</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #ffebee;">Jali 2</div><div class="card-content"><h3 class="card-title">Modern Jali Pattern 2</h3><a href="#" class="card-btn">Download DXF</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #ffebee;">Jali 3</div><div class="card-content"><h3 class="card-title">Modern Jali Pattern 3</h3><a href="#" class="card-btn">Download DXF</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #ffebee;">Jali 4</div><div class="card-content"><h3 class="card-title">Modern Jali Pattern 4</h3><a href="#" class="card-btn">Download DXF</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #ffebee;">Jali 5</div><div class="card-content"><h3 class="card-title">Modern Jali Pattern 5</h3><a href="#" class="card-btn">Download DXF</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #ffebee;">Jali 6</div><div class="card-content"><h3 class="card-title">Modern Jali Pattern 6</h3><a href="#" class="card-btn">Download DXF</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #ffebee;">Jali 7</div><div class="card-content"><h3 class="card-title">Modern Jali Pattern 7</h3><a href="#" class="card-btn">Download DXF</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #ffebee;">Jali 8</div><div class="card-content"><h3 class="card-title">Modern Jali Pattern 8</h3><a href="#" class="card-btn">Download DXF</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #ffebee;">Jali 9</div><div class="card-content"><h3 class="card-title">Modern Jali Pattern 9</h3><a href="#" class="card-btn">Download DXF</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #ffebee;">Jali 10</div><div class="card-content"><h3 class="card-title">Modern Jali Pattern 10</h3><a href="#" class="card-btn">Download DXF</a></div></div>
+                
+                <!-- Final Arrow Card -->
+                <a href="#cnc-all" class="arrow-card">
+                    <div class="arrow-icon">➔</div>
+                    <div class="arrow-text">View All</div>
+                </a>
             </div>
-
-            <!-- Card 3: Brochure -->
-            <div class="card">
-                <div class="card-image" style="background-color: #c8e6c9;">Brochure Design</div>
-                <div class="card-content">
-                    <span class="card-tag">Brochure</span>
-                    <h3 class="card-title">3-Fold Corporate Profile</h3>
-                    <a href="#" class="card-btn">Download PSD</a>
-                </div>
-            </div>
-
-            <!-- Card 4: Invitation -->
-            <div class="card">
-                <div class="card-image" style="background-color: #ffccbc;">Invitation Design</div>
-                <div class="card-content">
-                    <span class="card-tag">Invitation</span>
-                    <h3 class="card-title">Premium Wedding Card</h3>
-                    <a href="#" class="card-btn">Download Vector</a>
-                </div>
-            </div>
-
-            <!-- Card 5 -->
-            <div class="card">
-                <div class="card-image" style="background-color: #b3e5fc;">CNC Design 2</div>
-                <div class="card-content">
-                    <span class="card-tag">CNC Vector</span>
-                    <h3 class="card-title">Modern Wall Panel</h3>
-                    <a href="#" class="card-btn">Download DXF</a>
-                </div>
-            </div>
-
-            <!-- Card 6 -->
-            <div class="card">
-                <div class="card-image" style="background-color: #ffecb3;">Card Design 2</div>
-                <div class="card-content">
-                    <span class="card-tag">Visiting Card</span>
-                    <h3 class="card-title">Minimalist Studio Card</h3>
-                    <a href="#" class="card-btn">Download CDR</a>
-                </div>
-            </div>
-
-            <!-- Card 7 -->
-            <div class="card">
-                <div class="card-image" style="background-color: #cfd8dc;">Brochure 2</div>
-                <div class="card-content">
-                    <span class="card-tag">Brochure</span>
-                    <h3 class="card-title">Real Estate Catalog</h3>
-                    <a href="#" class="card-btn">Download PSD</a>
-                </div>
-            </div>
-
-            <!-- Card 8 -->
-            <div class="card">
-                <div class="card-image" style="background-color: #f8bbd0;">Invitation 2</div>
-                <div class="card-content">
-                    <span class="card-tag">Invitation</span>
-                    <h3 class="card-title">Birthday Party Invite</h3>
-                    <a href="#" class="card-btn">Download Vector</a>
-                </div>
-            </div>
-
         </div>
 
-        <!-- Pagination Section -->
+
+        <!-- ================= SECTION 2: VISITING CARD DESIGN ================= -->
+        <div class="section-header">
+            <h2 class="section-title">Visiting Card Design</h2>
+        </div>
+        <div class="scroll-wrapper">
+            <div class="card-slider">
+                <!-- 10 Dummy Cards for Visiting Cards -->
+                <div class="card"><div class="card-image" style="background-color: #e8eaf6;">Card 1</div><div class="card-content"><h3 class="card-title">Premium Business Card 1</h3><a href="#" class="card-btn">Download CDR</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8eaf6;">Card 2</div><div class="card-content"><h3 class="card-title">Premium Business Card 2</h3><a href="#" class="card-btn">Download CDR</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8eaf6;">Card 3</div><div class="card-content"><h3 class="card-title">Premium Business Card 3</h3><a href="#" class="card-btn">Download CDR</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8eaf6;">Card 4</div><div class="card-content"><h3 class="card-title">Premium Business Card 4</h3><a href="#" class="card-btn">Download CDR</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8eaf6;">Card 5</div><div class="card-content"><h3 class="card-title">Premium Business Card 5</h3><a href="#" class="card-btn">Download CDR</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8eaf6;">Card 6</div><div class="card-content"><h3 class="card-title">Premium Business Card 6</h3><a href="#" class="card-btn">Download CDR</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8eaf6;">Card 7</div><div class="card-content"><h3 class="card-title">Premium Business Card 7</h3><a href="#" class="card-btn">Download CDR</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8eaf6;">Card 8</div><div class="card-content"><h3 class="card-title">Premium Business Card 8</h3><a href="#" class="card-btn">Download CDR</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8eaf6;">Card 9</div><div class="card-content"><h3 class="card-title">Premium Business Card 9</h3><a href="#" class="card-btn">Download CDR</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8eaf6;">Card 10</div><div class="card-content"><h3 class="card-title">Premium Business Card 10</h3><a href="#" class="card-btn">Download CDR</a></div></div>
+                
+                <!-- Final Arrow Card -->
+                <a href="#cards-all" class="arrow-card">
+                    <div class="arrow-icon">➔</div>
+                    <div class="arrow-text">View All</div>
+                </a>
+            </div>
+        </div>
+
+
+        <!-- ================= SECTION 3: BROCHURE DESIGN ================= -->
+        <div class="section-header">
+            <h2 class="section-title">Brochure Design</h2>
+        </div>
+        <div class="scroll-wrapper">
+            <div class="card-slider">
+                <!-- 10 Dummy Cards for Brochures -->
+                <div class="card"><div class="card-image" style="background-color: #e8f5e9;">Brochure 1</div><div class="card-content"><h3 class="card-title">Corporate Brochure 1</h3><a href="#" class="card-btn">Download PSD</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8f5e9;">Brochure 2</div><div class="card-content"><h3 class="card-title">Corporate Brochure 2</h3><a href="#" class="card-btn">Download PSD</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8f5e9;">Brochure 3</div><div class="card-content"><h3 class="card-title">Corporate Brochure 3</h3><a href="#" class="card-btn">Download PSD</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8f5e9;">Brochure 4</div><div class="card-content"><h3 class="card-title">Corporate Brochure 4</h3><a href="#" class="card-btn">Download PSD</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8f5e9;">Brochure 5</div><div class="card-content"><h3 class="card-title">Corporate Brochure 5</h3><a href="#" class="card-btn">Download PSD</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8f5e9;">Brochure 6</div><div class="card-content"><h3 class="card-title">Corporate Brochure 6</h3><a href="#" class="card-btn">Download PSD</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8f5e9;">Brochure 7</div><div class="card-content"><h3 class="card-title">Corporate Brochure 7</h3><a href="#" class="card-btn">Download PSD</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8f5e9;">Brochure 8</div><div class="card-content"><h3 class="card-title">Corporate Brochure 8</h3><a href="#" class="card-btn">Download PSD</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8f5e9;">Brochure 9</div><div class="card-content"><h3 class="card-title">Corporate Brochure 9</h3><a href="#" class="card-btn">Download PSD</a></div></div>
+                <div class="card"><div class="card-image" style="background-color: #e8f5e9;">Brochure 10</div><div class="card-content"><h3 class="card-title">Corporate Brochure 10</h3><a href="#" class="card-btn">Download PSD</a></div></div>
+                
+                <!-- Final Arrow Card -->
+                <a href="#brochure-all" class="arrow-card">
+                    <div class="arrow-icon">➔</div>
+                    <div class="arrow-text">View All</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Pagination Section (For switching overall pages) -->
         <div class="pagination">
             <a href="#">&laquo; Prev</a>
             <a href="#" class="active">1</a>
@@ -395,6 +413,7 @@
             <a href="#">7</a>
             <a href="#">Next &raquo;</a>
         </div>
+
     </div>
 
 </body>
