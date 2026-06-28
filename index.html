@@ -3,532 +3,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CDRcut | Premium CNC & CorelDraw Templates Library</title>
+    <title>Premium Vector & CNC Hub</title>
     <style>
-        /* Premium Core Reset & Typography */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Cabinet Grotesk', 'Segoe UI', Inter, sans-serif;
-            -webkit-user-select: none; /* Text selection block */
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: #0a0a0c;
-            color: #f1f1f4;
-            line-height: 1.5;
-            overflow-x: hidden;
+            background-color: #f4f7f6;
+            color: #333;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* Glassmorphic Sticky Navigation Bar */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 8%;
-            background: rgba(16, 16, 20, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 87, 34, 0.15);
+        /* Top Navigation Strip */
+        .navbar {
+            background-color: #1a1a1a;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
         }
 
         .logo {
-            font-size: 30px;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            color: #ffffff;
-            text-transform: uppercase;
+            color: #fff;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
         .logo span {
-            color: #ff5722;
-            text-shadow: 0 0 15px rgba(255, 87, 34, 0.4);
+            color: #00adb5;
         }
 
-        nav ul {
+        .nav-links {
             display: flex;
             list-style: none;
-            align-items: center;
-            gap: 30px;
         }
 
-        nav ul li a {
-            color: #94a3b8;
-            font-weight: 600;
+        .nav-links li {
+            position: relative;
+        }
+
+        .nav-links a {
+            color: #bbb;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
             font-size: 15px;
             transition: all 0.3s ease;
         }
 
-        nav ul li a:hover {
-            color: #ff5722;
+        .nav-links a:hover, .nav-links li:hover > a {
+            color: #fff;
+            background-color: #252525;
         }
 
-        .btn-premium {
-            background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);
-            color: #ffffff !important;
-            padding: 10px 24px;
-            border-radius: 50px;
-            font-weight: 700;
-            box-shadow: 0 4px 20px rgba(255, 87, 34, 0.4);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        /* Dropdown Menu (Desktop) */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #1a1a1a;
+            min-width: 200px;
+            display: none;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-top: 3px solid #00adb5;
         }
 
-        .btn-premium:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(255, 87, 34, 0.6);
+        .dropdown li a {
+            padding: 12px 20px;
+            border-bottom: 1px solid #252525;
         }
 
-        /* High-End Hero Section with Cinematic Glow */
-        .hero {
-            text-align: center;
-            padding: 120px 20px 90px 20px;
-            background: radial-gradient(circle at center, rgba(255, 87, 34, 0.08) 0%, #0a0a0c 70%);
-            position: relative;
+        .dropdown li a:hover {
+            background-color: #00adb5;
+            color: #fff;
         }
 
-        .hero h1 {
-            font-size: 54px;
-            font-weight: 900;
-            margin-bottom: 20px;
-            letter-spacing: -1.5px;
-            color: #ffffff;
-            line-height: 1.2;
+        .nav-links li:hover .dropdown {
+            display: block;
         }
 
-        .hero h1 span {
-            color: #ff5722;
-            background: linear-gradient(to right, #ff5722, #ff8a65);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 19px;
-            color: #94a3b8;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: 400;
-        }
-
-        /* Modern Sleek Search Engine Layout */
-        .search-container {
-            width: 100%;
-            max-width: 650px;
-            margin: 0 auto;
-            display: flex;
-            background-color: #111115;
-            border-radius: 50px;
-            padding: 6px;
-            border: 1px solid #232329;
-            transition: all 0.3s ease;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-        }
-
-        .search-container:focus-within {
-            border-color: #ff5722;
-            box-shadow: 0 0 20px rgba(255, 87, 34, 0.2);
-        }
-
-        .search-container input {
-            flex: 1;
-            padding: 15px 25px;
-            border: none;
-            font-size: 16px;
-            background: transparent;
-            color: #ffffff;
-            outline: none;
-        }
-
-        .search-container input::placeholder {
-            color: #4b5563;
-        }
-
-        .search-container button {
-            padding: 15px 35px;
-            background: linear-gradient(135deg, #ff5722 0%, #d84315 100%);
-            color: white;
-            border: none;
-            font-size: 16px;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-
-        .search-container button:hover {
-            opacity: 0.9;
-        }
-
-        /* Trending Tags Styling */
-        .categories-tags {
-            margin-top: 30px;
-            font-size: 14px;
-            color: #4b5563;
-        }
-
-        .categories-tags span {
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-right: 10px;
-        }
-
-        .categories-tags a {
-            color: #94a3b8;
-            margin: 0 6px;
-            padding: 6px 16px;
-            background-color: #111115;
-            border: 1px solid #1e1e24;
-            border-radius: 50px;
-            display: inline-block;
-            margin-top: 8px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-
-        .categories-tags a:hover {
-            background-color: #ff5722;
-            border-color: #ff5722;
-            color: white;
-            transform: translateY(-1px);
-        }
-
-        /* Main Showcase Area */
-        .main-content {
-            padding: 80px 8%;
+        /* Main Content Container */
+        .main-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
         }
 
         .section-title {
-            margin-bottom: 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .section-title h2 {
             font-size: 28px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            position: relative;
+            margin-bottom: 30px;
+            color: #222;
+            border-left: 5px solid #00adb5;
             padding-left: 15px;
         }
 
-        .section-title h2::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 15%;
-            height: 70%;
-            width: 4px;
-            background-color: #ff5722;
-            border-radius: 4px;
-            box-shadow: 0 0 10px #ff5722;
-        }
-
-        .section-title a {
-            font-size: 15px;
-            font-weight: 700;
-            color: #ff5722;
-            transition: opacity 0.2s;
-        }
-
-        .section-title a:hover {
-            opacity: 0.8;
-        }
-
-        /* Luxury Design Grid Layout */
-        .design-grid {
+        /* Base Grid: Desktop par 4 cards */
+        .card-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 25px;
+            margin-bottom: 50px;
         }
 
-        .design-card {
-            background-color: #111115;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid #1e1e24;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .design-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255, 87, 34, 0.3);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
-        }
-
-        /* 3D Image Display Panel */
-        .thumbnail {
-            width: 100%;
-            height: 400px; /* Perfect aspect ratio for 8x4 panels */
-            background-color: #1a1a22;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            pointer-events: none; /* Image dragging protection */
-        }
-
-        /* Status Badge */
-        .badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            padding: 6px 14px;
+        .card {
+            background: #fff;
             border-radius: 8px;
-            font-size: 11px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            z-index: 10;
-        }
-
-        .badge.free {
-            background-color: #10b981;
-            color: white;
-        }
-
-        .badge.premium {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            color: #0a0a0c;
-        }
-
-        /* Meta Content Section */
-        .card-details {
-            padding: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
-            justify-content: space-between;
         }
 
-        .card-info h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: #ffffff;
-            font-weight: 700;
-            letter-spacing: -0.3px;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
-        .card-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            color: #64748b;
-            margin-bottom: 20px;
-        }
-
-        .file-type {
-            background-color: #1e1e24;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-weight: 800;
-            color: #ff5722;
-            font-size: 12px;
-        }
-
-        /* Glossy Download CTA Button */
-        .download-btn {
+        .card-image {
+            height: 180px;
+            background-color: #ddd;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #ff5722 0%, #c43e12 100%);
-            color: white;
-            padding: 14px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.2);
-            border: none;
-            cursor: pointer;
+            color: #666;
+            font-weight: bold;
+            background-size: cover;
+            background-position: center;
         }
 
-        .download-btn:hover {
-            background: linear-gradient(135deg, #ff6a3c 0%, #e64a19 100%);
-            transform: scale(1.02);
-            box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .download-btn span {
-            margin-right: 8px;
-            font-size: 16px;
+        .card-tag {
+            align-self: flex-start;
+            background: #e1f5fe;
+            color: #0288d1;
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
         }
 
-        /* High-End Minimal Footer */
-        footer {
-            background-color: #050507;
-            padding: 40px 8%;
+        .card-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .card-btn {
+            display: block;
             text-align: center;
-            border-top: 1px solid #111115;
-            margin-top: 100px;
-        }
-
-        footer p {
-            color: #4b5563;
-            font-size: 14px;
+            background-color: #00adb5;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
             font-weight: 500;
+            margin-top: 15px;
+            transition: background 0.3s;
         }
 
-        /* Fluid Layout Adjustment */
+        .card-btn:hover {
+            background-color: #008c92;
+        }
+
+        /* Pagination Style */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 40px 0;
+            flex-wrap: wrap; /* Mobile par buttons niche wrap ho sakein */
+        }
+
+        .pagination a {
+            color: #333;
+            padding: 10px 16px;
+            text-decoration: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .pagination a.active {
+            background-color: #00adb5;
+            color: white;
+            border: 1px solid #00adb5;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: #ddd;
+        }
+
+        /* ===================================================
+           MOBILE & TABLET RESPONSIVE STYLES (Media Queries)
+        =================================================== */
+        
+        /* 1. Tablets (Screens less than 1024px) */
+        @media (max-width: 1024px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 Cards per row */
+                gap: 20px;
+            }
+        }
+
+        /* 2. Mobile Phones (Screens less than 768px) */
         @media (max-width: 768px) {
-            header { padding: 15px 5%; flex-direction: column; gap: 15px; }
-            nav ul { flex-wrap: wrap; justify-content: center; gap: 15px; }
-            .hero h1 { font-size: 38px; }
-            .hero p { font-size: 16px; }
-            .thumbnail { height: 340px; }
+            .nav-container {
+                flex-direction: column; /* Logo upar, menu niche */
+                gap: 12px;
+                padding: 10px;
+            }
+
+            .nav-links a {
+                padding: 8px 10px;
+                font-size: 14px; /* Thoda chhota font mobile ke liye */
+            }
+
+            /* Mobile par hover dropdown ki jagah automatic toggle/simple responsive menu setup standard hota hai, abhi ke liye ye touch par clickable rahega */
+            .nav-links li:hover .dropdown {
+                display: block;
+                position: absolute;
+            }
+
+            .card-grid {
+                grid-template-columns: repeat(1, 1fr); /* Ek line me sirf 1 card full width */
+                gap: 15px;
+            }
+
+            .main-container {
+                margin: 20px auto;
+            }
+
+            .section-title {
+                font-size: 22px;
+                margin-bottom: 20px;
+            }
+
+            .pagination a {
+                padding: 8px 12px; /* Touch target accurate karne ke liye optimized button size */
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">CDR<span>cut</span></div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Free Vectors</a></li>
-                <li><a href="#">CNC Panels</a></li>
-                <li><a href="#">Wedding Assets</a></li>
-                <li><a href="#" class="btn-premium">👑 Premium Pass</a></li>
+    <!-- Navigation Strip -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">DESIGN<span>HUB</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li>
+                    <a href="#categories">Category ▾</a>
+                    <!-- Dropdown Items -->
+                    <ul class="dropdown">
+                        <li><a href="#cnc">CNC Vector Files</a></li>
+                        <li><a href="#visiting-cards">Visiting Cards</a></li>
+                        <li><a href="#brochures">Brochures</a></li>
+                        <li><a href="#invitations">Invitation Cards</a></li>
+                    </ul>
+                </li>
+                <li><a href="#gallery">Gallery</a></li>
             </ul>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
-    <section class="hero">
-        <h1>Premium <span>Vector Assets</span> & CNC Library</h1>
-        <p>High-end digital files for professionals. Download elite .DXF, .CDR, and premium geometric layouts instantly.</p>
+    <!-- Main Content -->
+    <div class="main-container">
+        <h2 class="section-title">Latest Premium Designs (Page 1)</h2>
         
-        <div class="search-container">
-            <input type="text" placeholder="Search elite templates (e.g., CNC Jaali, Laser Cut, Wedding)...">
-            <button>Search</button>
-        </div>
-
-        <div class="categories-tags">
-            <span>Trending:</span>
-            <a href="#">3D CNC Jaali</a>
-            <a href="#">Luxury Wedding Card</a>
-            <a href="#">Premium Flex</a>
-            <a href="#">Laser Pattern</a>
-        </div>
-    </section>
-
-    <main class="main-content">
-        <div class="section-title">
-            <h2>Elite Showroom Layouts</h2>
-            <a href="#">Explore Catalog &rarr;</a>
-        </div>
-
-        <div class="design-grid">
+        <!-- Responsive Grid -->
+        <div class="card-grid">
             
-            <div class="design-card">
-                <div class="thumbnail">
-                    <img src="watermarked_img_12667615834863225130.png" alt="3D Geometric Octagon CNC Panel">
-                    <span class="badge free">Free Asset</span>
-                </div>
-                <div class="card-details">
-                    <div class="card-info">
-                        <h3>3D Geometric Octagon CNC Jaali</h3>
-                        <div class="card-meta">
-                            <span class="file-type">.DXF / .CDR</span>
-                            <span>Downloads: 342</span>
-                        </div>
-                    </div>
-                    <a href="Untitled-3.dxf" download class="download-btn">
-                        <span>📥</span> Download .DXF Asset
-                    </a>
+            <!-- Card 1: CNC File -->
+            <div class="card">
+                <div class="card-image" style="background-color: #e0e0e0;">CNC Design 1</div>
+                <div class="card-content">
+                    <span class="card-tag">CNC Vector</span>
+                    <h3 class="card-title">Jali Cutting Pattern</h3>
+                    <a href="#" class="card-btn">Download DXF</a>
                 </div>
             </div>
 
-            <div class="design-card">
-                <div class="thumbnail" style="display:flex; align-items:center; justify-content:center; color:#3b4252; font-weight:700;">
-                    [ PREMIUM LOOKUP PLACEHOLDER ]
-                </div>
-                <div class="card-details">
-                    <div class="card-info">
-                        <h3>Royal Wedding Card Filigree</h3>
-                        <div class="card-meta">
-                            <span class="file-type">.CDR Only</span>
-                            <span>Downloads: 1.8K</span>
-                        </div>
-                    </div>
-                    <a href="#" class="download-btn">
-                        <span>📥</span> Download Vector File
-                    </a>
+            <!-- Card 2: Visiting Card -->
+            <div class="card">
+                <div class="card-image" style="background-color: #d1c4e9;">Card Design</div>
+                <div class="card-content">
+                    <span class="card-tag">Visiting Card</span>
+                    <h3 class="card-title">Luxury Business Card</h3>
+                    <a href="#" class="card-btn">Download CDR</a>
                 </div>
             </div>
 
-            <div class="design-card">
-                <div class="thumbnail" style="display:flex; align-items:center; justify-content:center; color:#3b4252; font-weight:700;">
-                    [ PREMIUM LOOKUP PLACEHOLDER ]
+            <!-- Card 3: Brochure -->
+            <div class="card">
+                <div class="card-image" style="background-color: #c8e6c9;">Brochure Design</div>
+                <div class="card-content">
+                    <span class="card-tag">Brochure</span>
+                    <h3 class="card-title">3-Fold Corporate Profile</h3>
+                    <a href="#" class="card-btn">Download PSD</a>
                 </div>
-                <div class="card-details">
-                    <div class="card-info">
-                        <h3>Luxury Abstract Wall Art Panel</h3>
-                        <div class="card-meta">
-                            <span class="file-type">.DXF / .DWG</span>
-                            <span>Premium License</span>
-                        </div>
-                    </div>
-                    <a href="#" class="download-btn" style="background: linear-gradient(135deg, #f59e0b 0%, #ca8a04 100%); color: #0a0a0c;">
-                        <span>👑</span> Unlock Premium Vector
-                    </a>
+            </div>
+
+            <!-- Card 4: Invitation -->
+            <div class="card">
+                <div class="card-image" style="background-color: #ffccbc;">Invitation Design</div>
+                <div class="card-content">
+                    <span class="card-tag">Invitation</span>
+                    <h3 class="card-title">Premium Wedding Card</h3>
+                    <a href="#" class="card-btn">Download Vector</a>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="card">
+                <div class="card-image" style="background-color: #b3e5fc;">CNC Design 2</div>
+                <div class="card-content">
+                    <span class="card-tag">CNC Vector</span>
+                    <h3 class="card-title">Modern Wall Panel</h3>
+                    <a href="#" class="card-btn">Download DXF</a>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="card">
+                <div class="card-image" style="background-color: #ffecb3;">Card Design 2</div>
+                <div class="card-content">
+                    <span class="card-tag">Visiting Card</span>
+                    <h3 class="card-title">Minimalist Studio Card</h3>
+                    <a href="#" class="card-btn">Download CDR</a>
+                </div>
+            </div>
+
+            <!-- Card 7 -->
+            <div class="card">
+                <div class="card-image" style="background-color: #cfd8dc;">Brochure 2</div>
+                <div class="card-content">
+                    <span class="card-tag">Brochure</span>
+                    <h3 class="card-title">Real Estate Catalog</h3>
+                    <a href="#" class="card-btn">Download PSD</a>
+                </div>
+            </div>
+
+            <!-- Card 8 -->
+            <div class="card">
+                <div class="card-image" style="background-color: #f8bbd0;">Invitation 2</div>
+                <div class="card-content">
+                    <span class="card-tag">Invitation</span>
+                    <h3 class="card-title">Birthday Party Invite</h3>
+                    <a href="#" class="card-btn">Download Vector</a>
                 </div>
             </div>
 
         </div>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 CDRcut. Elite Design Assets Infrastructure. All Rights Reserved.</p>
-    </footer>
+        <!-- Pagination Section -->
+        <div class="pagination">
+            <a href="#">&laquo; Prev</a>
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#">7</a>
+            <a href="#">Next &raquo;</a>
+        </div>
+    </div>
 
-    <script>
-        // Right-click global suppression
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-
-        // Advanced Key Shortcut Prevention Systems (Ctrl+S, Ctrl+U, F12, Ctrl+C)
-        document.addEventListener('keydown', function(e) {
-            // Block F12 (Developer Interface)
-            if (e.keyCode == 123) {
-                e.preventDefault();
-            }
-            // Block Ctrl+U (Source Analytics)
-            if (e.ctrlKey && e.keyCode == 85) {
-                e.preventDefault();
-            }
-            // Block Ctrl+S (Local Machine Download)
-            if (e.ctrlKey && e.keyCode == 83) {
-                e.preventDefault();
-            }
-            // Block Ctrl+C (Asset Copying)
-            if (e.ctrlKey && e.keyCode == 67) {
-                e.preventDefault();
-            }
-        });
-    </script>
 </body>
 </html>
