@@ -97,18 +97,15 @@
             display: block;
         }
 
-        /* Main Showcase Container */
+        /* Main Container */
         .main-container {
-            max-width: 1200px;
+            max-width: 1240px;
             margin: 30px auto;
             padding: 0 20px;
         }
 
         /* Section Headings */
         .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             margin-top: 40px;
             margin-bottom: 15px;
         }
@@ -122,37 +119,32 @@
             font-weight: 700;
         }
 
-        /* HORIZONTAL SCROLL GRID (The Magic Part) */
-        .scroll-wrapper {
+        /* ROW CONTAINER WITH BUTTONS */
+        .slider-container {
             position: relative;
-            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
         }
 
+        /* THE SCROLLABLE TRACK */
         .card-slider {
             display: flex;
             overflow-x: auto;
             gap: 20px;
-            padding: 10px 5px 25px 5px;
+            padding: 10px 5px 20px 5px;
             scroll-behavior: smooth;
-            scrollbar-width: thin; /* Firefox ke liye chhota scrollbar */
+            scrollbar-width: none; 
+            width: 100%;
         }
 
-        /* Webkit browsers (Chrome, Safari) ke scrollbar ko clean karne ke liye */
         .card-slider::-webkit-scrollbar {
-            height: 6px;
-        }
-        .card-slider::-webkit-scrollbar-track {
-            background: #e4e4e4;
-            border-radius: 10px;
-        }
-        .card-slider::-webkit-scrollbar-thumb {
-            background: #00adb5;
-            border-radius: 10px;
+            display: none; 
         }
 
-        /* Fixed Card Width for Horizontal Scroll */
+        /* FIXED CARD WIDTH (Trick: 4.2 cards visible on big screen) */
         .card {
-            flex: 0 0 280px; /* Card ki width desktop/mobile dono par fix rahegi */
+            flex: 0 0 calc(25% - 15px); 
+            min-width: 260px;
             background: #fff;
             border-radius: 8px;
             overflow: hidden;
@@ -175,8 +167,6 @@
             justify-content: center;
             color: #666;
             font-weight: bold;
-            background-size: cover;
-            background-position: center;
         }
 
         .card-content {
@@ -204,11 +194,6 @@
             border-radius: 5px;
             font-size: 14px;
             font-weight: 500;
-            transition: background 0.3s;
-        }
-
-        .card-btn:hover {
-            background-color: #008c92;
         }
 
         /* Arrow / View All End Card */
@@ -222,27 +207,47 @@
             align-items: center;
             text-decoration: none;
             color: #fff;
-            transition: background 0.3s, transform 0.3s;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: background 0.3s;
         }
 
         .arrow-card:hover {
             background: #00adb5;
-            transform: scale(1.03);
         }
 
         .arrow-icon {
-            font-size: 40px;
+            font-size: 35px;
             margin-bottom: 8px;
         }
 
-        .arrow-text {
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+        /* DESKTOP FLOATING ARROW BUTTONS */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(26, 26, 26, 0.9);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: background 0.3s;
         }
 
-        /* Pagination Section (Agar aapko pure page badalne ke liye chahiye) */
+        .nav-btn:hover {
+            background-color: #00adb5;
+        }
+
+        .prev-btn { left: -22px; }
+        .next-btn { right: -22px; }
+
+        /* Pagination Section */
         .pagination {
             display: flex;
             justify-content: center;
@@ -259,7 +264,6 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             font-weight: 500;
-            font-size: 14px;
         }
 
         .pagination a.active {
@@ -273,43 +277,33 @@
             .nav-container {
                 flex-direction: column;
                 gap: 10px;
-                padding: 12px 10px;
             }
 
-            .nav-links a {
-                padding: 6px 10px;
-                font-size: 14px;
-            }
-
-            .section-title {
-                font-size: 18px;
-            }
+            .nav-btn { display: none; }
 
             .card {
-                flex: 0 0 240px; /* Mobile par card thoda compact ho jayega smooth scroll ke liye */
+                flex: 0 0 78%; 
             }
-
-            .arrow-card {
-                flex: 0 0 150px;
-            }
+            
+            .main-container { padding: 0 15px; }
+            .section-title { font-size: 18px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Strip -->
     <nav class="navbar">
         <div class="nav-container">
             <div class="logo">CDR<span>HUB</span></div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="#about">About Us</a></li>
                 <li>
                     <a href="#categories">Category ▾</a>
                     <ul class="dropdown">
-                        <li><a href="#cnc">CNC Jali Design</a></li>
-                        <li><a href="#visiting-cards">Visiting Cards</a></li>
-                        <li><a href="#brochures">Brochures</a></li>
+                        <li><a href="cnc-jali.html">CNC Jali Design</a></li>
+                        <li><a href="visiting-cards.html">Visiting Cards</a></li>
+                        <li><a href="brochures.html">Brochures</a></li>
                         <li><a href="#invitations">Invitation Cards</a></li>
                     </ul>
                 </li>
@@ -318,16 +312,14 @@
         </div>
     </nav>
 
-    <!-- Main Container -->
     <div class="main-container">
 
-        <!-- ================= SECTION 1: CNC JALI DESIGN ================= -->
         <div class="section-header">
             <h2 class="section-title">CNC Jaali Design</h2>
         </div>
-        <div class="scroll-wrapper">
-            <div class="card-slider">
-                <!-- 10 Dummy Cards for CNC -->
+        <div class="slider-container">
+            <button class="nav-btn prev-btn" onclick="scrollSlider('cnc-slider', -300)">&#10094;</button>
+            <div class="card-slider" id="cnc-slider">
                 <div class="card"><div class="card-image" style="background-color: #ffebee;">Jali 1</div><div class="card-content"><h3 class="card-title">Modern Jali Pattern 1</h3><a href="#" class="card-btn">Download DXF</a></div></div>
                 <div class="card"><div class="card-image" style="background-color: #ffebee;">Jali 2</div><div class="card-content"><h3 class="card-title">Modern Jali Pattern 2</h3><a href="#" class="card-btn">Download DXF</a></div></div>
                 <div class="card"><div class="card-image" style="background-color: #ffebee;">Jali 3</div><div class="card-content"><h3 class="card-title">Modern Jali Pattern 3</h3><a href="#" class="card-btn">Download DXF</a></div></div>
@@ -339,22 +331,21 @@
                 <div class="card"><div class="card-image" style="background-color: #ffebee;">Jali 9</div><div class="card-content"><h3 class="card-title">Modern Jali Pattern 9</h3><a href="#" class="card-btn">Download DXF</a></div></div>
                 <div class="card"><div class="card-image" style="background-color: #ffebee;">Jali 10</div><div class="card-content"><h3 class="card-title">Modern Jali Pattern 10</h3><a href="#" class="card-btn">Download DXF</a></div></div>
                 
-                <!-- Final Arrow Card -->
-                <a href="#cnc-all" class="arrow-card">
+                <a href="cnc-jali.html" class="arrow-card">
                     <div class="arrow-icon">➔</div>
                     <div class="arrow-text">View All</div>
                 </a>
             </div>
+            <button class="nav-btn next-btn" onclick="scrollSlider('cnc-slider', 300)">&#10095;</button>
         </div>
 
 
-        <!-- ================= SECTION 2: VISITING CARD DESIGN ================= -->
         <div class="section-header">
             <h2 class="section-title">Visiting Card Design</h2>
         </div>
-        <div class="scroll-wrapper">
-            <div class="card-slider">
-                <!-- 10 Dummy Cards for Visiting Cards -->
+        <div class="slider-container">
+            <button class="nav-btn prev-btn" onclick="scrollSlider('card-slider', -300)">&#10094;</button>
+            <div class="card-slider" id="card-slider">
                 <div class="card"><div class="card-image" style="background-color: #e8eaf6;">Card 1</div><div class="card-content"><h3 class="card-title">Premium Business Card 1</h3><a href="#" class="card-btn">Download CDR</a></div></div>
                 <div class="card"><div class="card-image" style="background-color: #e8eaf6;">Card 2</div><div class="card-content"><h3 class="card-title">Premium Business Card 2</h3><a href="#" class="card-btn">Download CDR</a></div></div>
                 <div class="card"><div class="card-image" style="background-color: #e8eaf6;">Card 3</div><div class="card-content"><h3 class="card-title">Premium Business Card 3</h3><a href="#" class="card-btn">Download CDR</a></div></div>
@@ -366,22 +357,21 @@
                 <div class="card"><div class="card-image" style="background-color: #e8eaf6;">Card 9</div><div class="card-content"><h3 class="card-title">Premium Business Card 9</h3><a href="#" class="card-btn">Download CDR</a></div></div>
                 <div class="card"><div class="card-image" style="background-color: #e8eaf6;">Card 10</div><div class="card-content"><h3 class="card-title">Premium Business Card 10</h3><a href="#" class="card-btn">Download CDR</a></div></div>
                 
-                <!-- Final Arrow Card -->
-                <a href="#cards-all" class="arrow-card">
+                <a href="visiting-cards.html" class="arrow-card">
                     <div class="arrow-icon">➔</div>
                     <div class="arrow-text">View All</div>
                 </a>
             </div>
+            <button class="nav-btn next-btn" onclick="scrollSlider('card-slider', 300)">&#10095;</button>
         </div>
 
 
-        <!-- ================= SECTION 3: BROCHURE DESIGN ================= -->
         <div class="section-header">
             <h2 class="section-title">Brochure Design</h2>
         </div>
-        <div class="scroll-wrapper">
-            <div class="card-slider">
-                <!-- 10 Dummy Cards for Brochures -->
+        <div class="slider-container">
+            <button class="nav-btn prev-btn" onclick="scrollSlider('brochure-slider', -300)">&#10094;</button>
+            <div class="card-slider" id="brochure-slider">
                 <div class="card"><div class="card-image" style="background-color: #e8f5e9;">Brochure 1</div><div class="card-content"><h3 class="card-title">Corporate Brochure 1</h3><a href="#" class="card-btn">Download PSD</a></div></div>
                 <div class="card"><div class="card-image" style="background-color: #e8f5e9;">Brochure 2</div><div class="card-content"><h3 class="card-title">Corporate Brochure 2</h3><a href="#" class="card-btn">Download PSD</a></div></div>
                 <div class="card"><div class="card-image" style="background-color: #e8f5e9;">Brochure 3</div><div class="card-content"><h3 class="card-title">Corporate Brochure 3</h3><a href="#" class="card-btn">Download PSD</a></div></div>
@@ -393,28 +383,23 @@
                 <div class="card"><div class="card-image" style="background-color: #e8f5e9;">Brochure 9</div><div class="card-content"><h3 class="card-title">Corporate Brochure 9</h3><a href="#" class="card-btn">Download PSD</a></div></div>
                 <div class="card"><div class="card-image" style="background-color: #e8f5e9;">Brochure 10</div><div class="card-content"><h3 class="card-title">Corporate Brochure 10</h3><a href="#" class="card-btn">Download PSD</a></div></div>
                 
-                <!-- Final Arrow Card -->
-                <a href="#brochure-all" class="arrow-card">
+                <a href="brochures.html" class="arrow-card">
                     <div class="arrow-icon">➔</div>
                     <div class="arrow-text">View All</div>
                 </a>
             </div>
+            <button class="nav-btn next-btn" onclick="scrollSlider('brochure-slider', 300)">&#10095;</button>
         </div>
 
-        <!-- Pagination Section (For switching overall pages) -->
-        <div class="pagination">
-            <a href="#">&laquo; Prev</a>
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">7</a>
-            <a href="#">Next &raquo;</a>
-        </div>
-
-    </div>
+    <script>
+        function scrollSlider(sliderId, scrollAmount) {
+            const slider = document.getElementById(sliderId);
+            slider.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    </script>
 
 </body>
 </html>
